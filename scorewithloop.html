@@ -1,0 +1,142 @@
+<html>
+<head>
+<title>Diving Score</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<SCRIPT LANGUAGE=JavaScript>
+function main()
+{
+// Declaring and initialising variables.
+var i;
+var judgeTotal = 0;
+var diveTotal = 0;
+var degreeDifficulty = 0;
+var score = [];
+
+// Allow recognition of user input of judges' scores in processing. parseInt attribute converts the variable recognition from 
+// string to numbers and ensures the system will only process numbers and not letters or symbols. The user will be 
+// informed if they enter invalid data as output boxes will show "NaN" meaning Not A Number error.
+score[0] = parseInt(form1.tbjudgeScore1.value);
+score[1] = parseInt(form1.tbjudgeScore2.value);
+score[2] = parseInt(form1.tbjudgeScore3.value);
+score[3] = parseInt(form1.tbjudgeScore4.value);
+score[4] = parseInt(form1.tbjudgeScore5.value);
+
+// Generate random Degree of Difficulty that is an integer between 1 and 5 and output display this value in a text box.
+degreeDifficulty = Math.round(Math.random()*5+0.5);
+form1.tbDD.value = degreeDifficulty;
+
+// Sort the scores in ascending order and output display three middle scores [1]->[3], discarding highest and lowest scores.
+score.sort(function(a, b){return a-b});
+form1.tbsortedScore1.value = score[1];
+form1.tbsortedScore2.value = score[2];
+form1.tbsortedScore3.value = score[3];
+
+// Error check if Judges' scores entered are between 1 and 10 and if not alerts user before clearing values and refreshing page.
+for (i=1;i<10;i++)
+	{
+	score[i] = Math.round();
+	}
+if (score[0]<1||score[0]>10)
+	{
+	alert("Try again! Please enter Judge scores between 1 and 10.");
+	window.location.reload();
+	}
+if (score[1]<1||score[1]>10)
+	{
+	alert("Try again! Please enter Judge scores between 1 and 10.");
+	window.location.reload();
+	}
+if (score[2]<1||score[2]>10)
+	{
+	alert("Try again! Please enter Judge scores between 1 and 10.");
+	window.location.reload();
+	}
+if (score[3]<1||score[3]>10)
+	{
+	alert("Try again! Please enter Judge scores between 1 and 10.");
+	window.location.reload();
+	}
+if (score[4]<1||score[4]>10)
+	{
+	alert("Try again! Please enter Judge scores between 1 and 10.");
+	window.location.reload();
+	}
+
+// Algorithms to calculate judge total and dive total.
+judgeTotal = (score[1]+score[2]+score[3]);
+diveTotal = (score[1]+score[2]+score[3])*degreeDifficulty;
+
+// Round the dive total to 2 decimal places.
+diveTotal = diveTotal.toFixed(2);
+
+// Output judge total and dive total in corresponding textboxes.
+form1.tbjudgeTotal.value = judgeTotal;
+form1.tbdiveTotal.value = diveTotal;
+}
+
+</script>
+</head>
+
+<body>
+<h1>Diving Competition</h1>
+
+<!--Navigation Bar with links to two other pages: Homepage and Competition Progress page.-->
+  <table width="600" border="1" cellspacing="0" cellpadding="2" align="center">
+    <tr>
+      <td width="200"><a href="index.html">Home</a></td>
+      <td width="200"><h2>Scoring<h2></td>
+      <td width="200"><a href="progress.html">Competition Progress</td>
+    </tr>
+  </table>
+
+<!--Main body in a table with another table nested within a form for the judges' scorecard.-->
+<table width="600" border="0" cellspacing="10" cellpadding="10" align="center">
+  <tr>
+    <td><p>Please enter DIVER Name and five JUDGE Scores and press Confirm to calculate scoring. Degree of Difficulty is predetermined and displayed below.</p>
+      <form name="form1">
+      <h3>&nbsp;DIVER Name: <input type="text" name="tbname">
+      &nbsp;&nbsp;DD: 
+      <input type="text" style="width:50" name="tbDD"></h3>
+      <table width="550" border="1" cellspacing="0" cellpadding="0" align="center">
+        <tr>
+          <td width="168"><h3>JUDGE</h3></td>
+          <td width="200"><h3>Scores</h3></td>
+          <td width="174"><h3>Counted Scores</h3></td>
+        </tr>
+        <tr>
+          <td>Judge1</td>
+          <td><input type="text" name="tbjudgeScore1"></td>
+          <td style="background-color:#E0FFFF; font-size:10px;">(Lowest score excluded)</td>
+        </tr>
+        <tr>
+          <td>Judge2</td>
+          <td><input type="text" name="tbjudgeScore2"></td>
+          <td><input type="text" name="tbsortedScore1"></td>
+        </tr>
+        <tr>
+          <td>Judge3</td>
+          <td><input type="text" name="tbjudgeScore3"></td>
+          <td><input type="text" name="tbsortedScore2"></td>
+        </tr>
+        <tr>
+          <td>Judge4</td>
+          <td><input type="text" name="tbjudgeScore4"></td>
+          <td><input type="text" name="tbsortedScore3"></td>
+        </tr>
+        <tr>
+          <td>Judge5</td>
+          <td><input type="text" name="tbjudgeScore5"></td>
+          <td style="background-color:#E0FFFF; font-size:10px;">(Highest score excluded)</td>
+        </tr>
+      </table>
+      <h3>Calculate Scoring 
+        <input type="button" value="Confirm" onClick="main()">&nbsp;&nbsp;&nbsp;&nbsp;Judge TOTAL:<input type="text" style="width:55" name="tbjudgeTotal">&nbsp;&nbsp;&nbsp;Dive TOTAL:
+        <input type="text" style="width:55" name="tbdiveTotal"></h3>
+      </form>
+</td>
+  </tr>
+</table>
+<SCRIPT LANGUAGE=JavaScript> main(); </SCRIPT>
+</body>
+</html>
+
